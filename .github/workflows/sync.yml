@@ -13,7 +13,9 @@ jobs:
             - name: 检出仓库
               uses: actions/checkout@v4
             - name: 删除当前 randpic 文件夹
-              run: rm -rf randpic
+              run: | 
+                rm -rf randpic
+                ls -la
             - name: 下载新的备份
               run: python get.py
             - name: 上传新备份
