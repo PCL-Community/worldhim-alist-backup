@@ -1,0 +1,30 @@
+name: 备份 randpic
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: '0 22 * * *'
+    push:
+permissions:
+  contents: write
+  deployments: write
+jobs:
+    sync:
+        runs-on: ubuntu-latest
+        steps:
+            - name: 检出仓库
+              uses: actions/checkout@v4
+            - name: 安装依赖
+              run: pip install -r requirements.txt
+            - name: 删除当前 randpic 文件夹
+              run: rm -rf randpic
+            - name: 下载新的备份
+              run: python get.py
+            - name: 上传新备份
+              run: |
+                git config --local user.email "github-bot@example.com"
+                git config --local user.name "[Actions] 自动同步"
+                git add .
+                git commit -m "Sync"
+                git push
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
