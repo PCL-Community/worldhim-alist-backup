@@ -17,6 +17,7 @@ jobs:
             - name: 下载新的备份
               run: python get.py
             - name: 上传新备份
+              if: steps.check.outputs.changed == 'true'
               run: |
                 git config --local user.email "github-bot@example.com"
                 git config --local user.name "[Actions] 自动同步"
