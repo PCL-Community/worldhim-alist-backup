@@ -15,7 +15,7 @@ jobs:
             - name: 删除当前 randpic 文件夹
               run: | 
                 rm -rf randpic
-                ls -la
+                ls
             - name: 下载新的备份
               run: python get.py
             - name: 上传新备份
