@@ -13,8 +13,6 @@ jobs:
         steps:
             - name: 检出仓库
               uses: actions/checkout@v4
-            - name: 安装依赖
-              run: pip install -r requirements.txt
             - name: 删除当前 randpic 文件夹
               run: rm -rf randpic
             - name: 下载新的备份
