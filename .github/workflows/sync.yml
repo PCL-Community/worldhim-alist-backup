@@ -2,7 +2,7 @@ name: 备份 randpic
 on:
     workflow_dispatch:
     schedule:
-        - cron: '0 22 * * *'
+        - cron: '0 16 * * *'
 permissions:
   contents: write
   deployments: write
