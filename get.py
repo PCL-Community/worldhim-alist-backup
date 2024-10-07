@@ -70,6 +70,35 @@ def get_files(base_directory, dir_names):
                     download_file(file_url, save_path)
         else:
             print(f"未能获取 {name} 的有效数据，跳过此文件夹。")
+def fetch_root_content(): # 根目录的
+    payload = {
+        "password": "",
+        "page": 1,
+        "per_page": 0,
+        "refresh": False
+    }
+
+    response = requests.post(url, json=payload)
+    return response.json()
+
+# 下载根目录下所有图片文件的函数
+def download_images_from_root():
+    base_directory = "randpic"
+    
+    # 确保保存图片的根目录存在
+    if not os.path.exists(base_directory):
+        os.makedirs(base_directory)
+
+    # 获取根目录内容
+    result = fetch_root_content()
+
+    if result and "data" in result and "content" in result["data"]:
+        for item in result["data"]["content"]:
+            # 只处理不是文件夹且扩展名为图片格式的文件
+            if not item["is_dir"] and item["name"].lower().endswith(('.jpg', '.jpeg', '.png')):
+                file_url = f"https://alist.worldhim.eu.org/d/randpic/{item['name']}"
+                save_path = os.path.join(base_directory, item['name'])
+                download_file(file_url, save_path)
 
 # 主程序逻辑
 def main():
@@ -82,9 +111,9 @@ def main():
         # 创建文件夹
         base_directory = "randpic"
         create_folders(base_directory, dir_names)
-
         # 获取文件并下载到对应文件夹
         get_files(base_directory, dir_names)
+        download_images_from_root()
 
 if __name__ == "__main__":
     main()
