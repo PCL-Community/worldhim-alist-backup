@@ -1,3 +1,12 @@
+> [!IMPORTANT]
+> 已换源，本仓库将存档：[#1](https://github.com/PCL-Community/worldhim-alist-backup/issues/1)
+
+> 已使用 GitHub + 93@Home 作为图片源
+> 
+> AList 将会停用
+> 
+> 源仓库：https://github.com/WorldHim/PCL2Hub
+> 
 # worldhim-alist-backup
 ### 这里是 @worldhim  **alist网盘** 的备份，仅存放 **randpic** 部分文件。
 
